@@ -6,12 +6,53 @@
     android:layout_height="match_parent"
     tools:context="com.atilano.datawriting.Main2Activity">
 
+    <EditText
+        android:id="@+id/etFilenameLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:hint="Filename"
+        />
+
+    <TextView
+        android:id="@+id/tvDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/etFilenameLoad"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnPref"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvDisplay"
+        android:layout_marginTop="10dp"
+        android:text="Shared Preferences"
+        android:onClick="sharedPref"
+        />
+
+    <Button
+        android:id="@+id/btnIStorage"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnPref"
+        android:layout_marginTop="5dp"
+        android:text="Internal Storage"
+        android:onClick="intStorage"
+        />
+
     <Button
         android:id="@+id/btnICache"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/btnIStorage"
+        android:layout_marginTop="5dp"
         android:text="Internal Cache"
         android:onClick="intCache"
         />
@@ -21,7 +62,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/btnICache"
         android:text="External Cache"
         android:onClick="extCache"
@@ -32,7 +73,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/btnECache"
         android:text="External Storage"
         android:onClick="extStorage"
@@ -43,19 +84,11 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/btnEStorage"
-        android:text="External Public Cache"
+        android:text="External Public Storage"
         android:onClick="extPubStorage"
         />
-
-    <TextView
-        android:id="@+id/tvDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_below="@+id/btnEPStorage"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btnClear"
@@ -63,8 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="70dp"
-        android:layout_below="@id/tvDisplay"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btnEPStorage"
         android:text="Clear"
         android:onClick="clearDisplay"
         />
@@ -75,8 +108,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="70dp"
-        android:layout_below="@id/tvDisplay"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btnEPStorage"
         android:text="Back"
         android:onClick="goBack"
         />
