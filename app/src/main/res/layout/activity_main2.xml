@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.atilano.datawriting.Main2Activity">
+
+    <Button
+        android:id="@+id/btnICache"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Internal Cache"
+        android:onClick="intCache"
+        />
+
+    <Button
+        android:id="@+id/btnECache"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btnICache"
+        android:text="External Cache"
+        android:onClick="extCache"
+        />
+
+    <Button
+        android:id="@+id/btnEStorage"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btnECache"
+        android:text="External Storage"
+        android:onClick="extStorage"
+        />
+
+    <Button
+        android:id="@+id/btnEPStorage"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btnEStorage"
+        android:text="External Public Cache"
+        android:onClick="extPubStorage"
+        />
+
+    <TextView
+        android:id="@+id/tvDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/btnEPStorage"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_below="@id/tvDisplay"
+        android:text="Clear"
+        android:onClick="clearDisplay"
+        />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_below="@id/tvDisplay"
+        android:text="Back"
+        android:onClick="goBack"
+        />
+
+</RelativeLayout>
