@@ -1,10 +1,12 @@
 package com.atilano.datawriting;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.File;
@@ -15,28 +17,58 @@ import java.io.IOException;
 public class Main2Activity extends AppCompatActivity {
 
     TextView tvDisplay;
+    EditText etFilenameLoad;
+
+    SharedPreferences preferences;
     FileInputStream fis = null;
-    String fileStorage = null;
 
-    int read = 0;
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent = getIntent();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_main2);
+        preferences = getSharedPreferences("sharedText", MODE_PRIVATE);
+
         tvDisplay = (TextView) findViewById(R.id.tvDisplay);
+        etFilenameLoad = (EditText) findViewById(R.id.etFilenameLoad);
     }
 
-    private void intCache(View view) {
-        fileStorage = "data1.txt";
+    public void sharedPref (View view){
+        String data = preferences.getString("Data","");
+        String filename = preferences.getString("Filename","");
+
+        tvDisplay.setText("Data: " + data + " | Filename: " + filename);
+    }
+
+    public void intStorage(View view){
+        String path = etFilenameLoad.getText().toString();
+        StringBuffer buffer = new StringBuffer();
+        int read = 0;
+
+        try {
+            fis = openFileInput(path);
+            while ((read = fis.read()) != -1){
+                buffer.append((char)read);
+            }
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        tvDisplay.setText(buffer.toString());
+    }
+
+    public void intCache(View view) {
+        String path = etFilenameLoad.getText().toString();
         StringBuffer buffer = new StringBuffer();
         File directory = getCacheDir();
-        read = 0;
+        int read = 0;
 
         try {
-            fis = new FileInputStream(new File(directory, fileStorage));
+            fis = new FileInputStream(new File(directory, path));
             while ((read = fis.read()) != -1) {
-                buffer.append((char) read);
+                buffer.append((char)read);
             }
             fis.close();
         } catch (FileNotFoundException e) {
@@ -48,14 +80,14 @@ public class Main2Activity extends AppCompatActivity {
         tvDisplay.setText(buffer.toString());
     }
 
-    private void extCache(View view) {
-        fileStorage = "data2.txt";
+    public void extCache(View view) {
+        String path = etFilenameLoad.getText().toString();
         StringBuffer buffer = new StringBuffer();
         File directory = getExternalCacheDir();
-        read = 0;
+        int read = 0;
 
         try {
-            fis = new FileInputStream(new File(directory, fileStorage));
+            fis = new FileInputStream(new File(directory, path));
             while ((read = fis.read()) != -1) {
                 buffer.append((char) read);
             }
@@ -69,14 +101,14 @@ public class Main2Activity extends AppCompatActivity {
         tvDisplay.setText(buffer.toString());
     }
 
-    private void extStorage(View view) {
-        fileStorage = "data3.txt";
+    public void extStorage(View view) {
+        String path = etFilenameLoad.getText().toString();
         StringBuffer buffer = new StringBuffer();
         File directory = getExternalFilesDir("Temp");
-        read = 0;
+        int read = 0;
 
         try {
-            fis = new FileInputStream(new File(directory, fileStorage));
+            fis = new FileInputStream(new File(directory, path));
             while ((read = fis.read()) != -1) {
                 buffer.append((char) read);
             }
@@ -90,14 +122,14 @@ public class Main2Activity extends AppCompatActivity {
         tvDisplay.setText(buffer.toString());
     }
 
-    private void extPubStorage(View view) {
-        fileStorage = "data1.txt";
+    public void extPubStorage(View view) {
+        String path = etFilenameLoad.getText().toString();
         StringBuffer buffer = new StringBuffer();
         File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        read = 0;
+        int read = 0;
 
         try {
-            fis = new FileInputStream(new File(directory, fileStorage));
+            fis = new FileInputStream(new File(directory, path));
             while ((read = fis.read()) != -1) {
                 buffer.append((char) read);
             }
@@ -109,6 +141,10 @@ public class Main2Activity extends AppCompatActivity {
         }
 
         tvDisplay.setText(buffer.toString());
+    }
+
+    public void clearDisplay (View view){
+        tvDisplay.setText("");
     }
 
 
